@@ -2,58 +2,21 @@ import React from 'react'
 import styles from './Content.module.css'
 
 const Movies = (props) => {
+    let movies = props.moviesList.map(m =>
+        <div className={styles.contentCard}>
+            <span>{ m.title }</span>
+            <img className={styles.contentPhoto} src={m.image}/>
+            <span>Year: {m.year}</span>
+            <span>Genre: {m.genre}</span>
+            <span>Rating: {m.rating}</span>
+            <button>Watch online</button>
+        </div>
+        )
     return(
         <div>
             <div className={styles.typeText}>Movies</div>
             <div className={styles.content_wrapper}>
-                <div className={styles.contentCard}>
-                    <span>Stranger Things</span>
-                    <img className={styles.contentPhoto} src='https://m.media-amazon.com/images/M/MV5BN2ZmYjg1YmItNWQ4OC00YWM0LWE0ZDktYThjOTZiZjhhN2Q2XkEyXkFqcGdeQXVyNjgxNTQ3Mjk@._V1_.jpg'/>
-                    <span>Year: 2016</span>
-                    <span>Genre: horror, detective, adventures</span>
-                    <span>Rating: 9/10</span>
-                    <button>Watch online</button>
-                </div>
-                <div className={styles.contentCard}>
-                    <span>Stranger Things</span>
-                    <img className={styles.contentPhoto} src='https://m.media-amazon.com/images/M/MV5BN2ZmYjg1YmItNWQ4OC00YWM0LWE0ZDktYThjOTZiZjhhN2Q2XkEyXkFqcGdeQXVyNjgxNTQ3Mjk@._V1_.jpg'/>
-                    <span>Year: 2016</span>
-                    <span>Genre: horror, detective, adventures</span>
-                    <span>Rating: 9/10</span>
-                    <button>Watch online</button>
-                </div>
-                <div className={styles.contentCard}>
-                    <span>Stranger Things</span>
-                    <img className={styles.contentPhoto} src='https://m.media-amazon.com/images/M/MV5BN2ZmYjg1YmItNWQ4OC00YWM0LWE0ZDktYThjOTZiZjhhN2Q2XkEyXkFqcGdeQXVyNjgxNTQ3Mjk@._V1_.jpg'/>
-                    <span>Year: 2016</span>
-                    <span>Genre: horror, detective, adventures</span>
-                    <span>Rating: 9/10</span>
-                    <button>Watch online</button>
-                </div>
-                <div className={styles.contentCard}>
-                    <span>Stranger Things</span>
-                    <img className={styles.contentPhoto} src='https://m.media-amazon.com/images/M/MV5BN2ZmYjg1YmItNWQ4OC00YWM0LWE0ZDktYThjOTZiZjhhN2Q2XkEyXkFqcGdeQXVyNjgxNTQ3Mjk@._V1_.jpg'/>
-                    <span>Year: 2016</span>
-                    <span>Genre: horror, detective, adventures</span>
-                    <span>Rating: 9/10</span>
-                    <button>Watch online</button>
-                </div>
-                <div className={styles.contentCard}>
-                    <span>Stranger Things</span>
-                    <img className={styles.contentPhoto} src='https://m.media-amazon.com/images/M/MV5BN2ZmYjg1YmItNWQ4OC00YWM0LWE0ZDktYThjOTZiZjhhN2Q2XkEyXkFqcGdeQXVyNjgxNTQ3Mjk@._V1_.jpg'/>
-                    <span>Year: 2016</span>
-                    <span>Genre: horror, detective, adventures</span>
-                    <span>Rating: 9/10</span>
-                    <button>Watch online</button>
-                </div>
-                <div className={styles.contentCard}>
-                    <span>Stranger Things</span>
-                    <img className={styles.contentPhoto} src='https://m.media-amazon.com/images/M/MV5BN2ZmYjg1YmItNWQ4OC00YWM0LWE0ZDktYThjOTZiZjhhN2Q2XkEyXkFqcGdeQXVyNjgxNTQ3Mjk@._V1_.jpg'/>
-                    <span>Year: 2016</span>
-                    <span>Genre: horror, detective, adventures</span>
-                    <span>Rating: 9/10</span>
-                    <button>Watch online</button>
-                </div>
+                { movies }
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: 'http://localhost:9000/api'
+    baseURL: 'http://localhost:9000/api/content'
 })
 
 export const api = {
@@ -21,9 +21,9 @@ export const api = {
             return error.response;
         }
     },
-    async addItem() {
+    async addItem(data) {
         try {
-            const response = await instance.post('/add');
+            const response = await instance.post('/add', { data })
             return response;
         } catch (error) {
             return error.response;

@@ -11,10 +11,9 @@
 .content_wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 20px;
     width: 1000px;
-    align-items: center;
     border: 1px solid white;
     background-color: rgb(187, 187, 201);
     margin-bottom: 10%;
@@ -24,7 +23,6 @@
 
 .contentCard {
     display: flex;
-    flex: 1 1 auto;
     color: white;
     margin-left: 15px;
     margin-top: 15px;
@@ -34,6 +32,7 @@
     background-color: rgb(21, 20, 22);
     padding: 10px;
     border-radius: 3px;
+    height: max-content;
 }
 
 

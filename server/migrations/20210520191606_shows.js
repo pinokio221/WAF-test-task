@@ -1,10 +1,9 @@
 
 exports.up = function(knex) {
     return knex.schema
-    .createTable('movies_and_shows', (table) => {
+    .createTable('shows', (table) => {
         table.increments()
         table.string('title').notNullable();
-        table.enu('type', ['movie', 'show']);
         table.integer('year').notNullable();
         table.string('genre').notNullable();
         table.integer('rating').notNullable()
@@ -16,5 +15,5 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
     return knex.schema
-    .dropTableIfExists('movies_and_shows')
+    .dropTableIfExists('shows')
 };
