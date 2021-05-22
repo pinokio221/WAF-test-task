@@ -21,6 +21,15 @@ export const api = {
             return error.response;
         }
     },
+    async titleValidation(title, category) {
+        try {
+            const response = await instance.get(`/validation?title=${title}&category=${category}`);
+            return response;
+            
+        } catch (error) {
+            return error.response;
+        }
+    },
     async addItem(data) {
         try {
             const response = await instance.post('/add', { data })
@@ -29,17 +38,19 @@ export const api = {
             return error.response;
         }
     },
-    async editItem() {
+    async updateItem(data) {
+        console.log(data)
         try {
-            const response = await instance.update('/edit');
+            const response = await instance.put('/update', {data});
             return response;
         } catch (error) {
             return error.response;
         }
     },
-    async removeItem() {
+    async removeItem(id, category) {
         try {
-            const response = await instance.del('/remove');
+            console.log(id, category)
+            const response = await instance.delete(`/remove?id=${id}&category=${category}`);
             return response;
         } catch (error) {
             return error.response;

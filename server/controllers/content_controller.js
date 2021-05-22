@@ -44,9 +44,9 @@ const getMoviesList = (req, res) => {
 
 const addItem = (req, res) => {
     try{
-        const {title, type, year, genre, rating, image, link} = req.body.data
-        console.log(link)
-        if(type === "show") {
+        const {title, category, year, genre, rating, image, link} = req.body.data
+        console.log(req.body)
+        if(category === "show") {
             knex.insert({title, year, genre, rating, image, link}).into('shows').returning('*')
             .then(function(result) {
                 if(result) {
@@ -58,7 +58,7 @@ const addItem = (req, res) => {
                 }
             })
         }
-        if(type === "movie") {
+        if(category === "movie") {
             knex.insert({title, year, genre, rating, image, link}).into('movies').returning('*')
             .then(function(result) {
                 if(result) {
@@ -77,8 +77,103 @@ const addItem = (req, res) => {
     }
 }
 
+const removeItem = (req, res) => {
+    try {
+        const id = req.query.id;
+        const category = req.query.category;
+    
+        if(category == "show") {
+            knex('shows').where('id', id).del().returning('*').then(function(result){
+                if(result[0]) {
+                    return res.status(200).json({
+                        message: "Item succesfully removed",
+                        item: result[0],
+                        category: "show"
+                    })
+                }
+                return res.status(404).json({
+                    message: "Item not found"
+                })
+                
+            })
+        }
+        
+
+    } catch(error) {
+        console.log(error);
+        res.status(400).send(error);
+    }
+}
+
+const updateItem = (req, res) => {
+    try{
+        const {id, title, category, year, genre, rating, image, link} = req.body.data
+        if(category === "show") {
+            knex('shows').update({title, year, genre, rating, image, link}).where('id', id).returning('*')
+            .then(function(result) {
+                if(result) {
+                    res.status(200).json({
+                        message: "Show successfully updated",
+                        item: result[0],
+                        category: "show"
+                    })
+                }
+            })
+        }
+        if(category === "movie") {
+            knex('movies').update({title, year, genre, rating, image, link}).where('id', id).returning('*')
+            .then(function(result) {
+                if(result) {
+                    res.status(200).json({
+                        message: "Movie successfully updated",
+                        item: result[0],
+                        category: "movie"
+                    })
+                }
+            })
+        }
+
+    }catch(error) {
+        console.log(error);
+        res.status(400).send(error);
+    }
+}
+
+const titleValidation = (req, res) => {
+    try {
+        if(req.query.category === 'show') {
+            knex.select('id').where('title', req.query.title).from("shows").first().then(function(row) {
+                if(row) {
+                    return res.status(302).json({
+                        message: "Show with this title already exists!"
+                    })
+                }
+                return res.status(200).send()
+            })
+        }
+        if(req.query.category === "movie") {
+            knex.select('id').where('title', req.query.title).from("movies").first().then(function(row) {
+                if(row) {
+                    return res.status(302).json({
+                        message: "Movie with this title already exists!"
+                    })
+                }
+                return res.status(200).send()
+            })
+        }
+        
+
+    } catch(error) {
+        console.log(error);
+        res.status(400).send(error);
+    }
+}
+
 module.exports = {
     getShowsList: getShowsList,
     getMoviesList: getMoviesList,
-    addItem: addItem
+    addItem: addItem,
+    removeItem: removeItem,
+    updateItem: updateItem,
+    titleValidation: titleValidation,
 }

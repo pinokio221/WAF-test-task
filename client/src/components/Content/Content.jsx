@@ -3,17 +3,33 @@ import Shows from './Shows'
 import Movies from './Movies'
 import styles from './Content.module.css'
 import { connect } from 'react-redux';
-import { getContent } from '../../redux/reducers'
+import { getContent, updateItem, removeItem, setEditedItem } from '../../redux/reducers'
 
 class Content extends React.Component {
     componentDidMount() {
         this.props.getContent();
     }
+    updateItem = (data) => {
+        this.props.updateItem(data);
+    }
+    removeItem = (id, category) => {
+        this.props.removeItem(id, category);
+    }
     render() {
         return(
             <div className={styles.wrapper}>
-                <Shows showsList={this.props.showsList}/>
-                <Movies moviesList={this.props.moviesList}/>
+                <Shows 
+                    showsList={this.props.showsList} 
+                    updateItem={this.updateItem} 
+                    removeItem={this.removeItem}
+                    setEditedItem={this.props.setEditedItem}
+                    />
+                <Movies 
+                    moviesList={this.props.moviesList} 
+                    updateItem={this.updateItem} 
+                    removeItem={this.removeItem}
+                    setEditedItem={this.props.setEditedItem}
+                    />
             </div>
         )
     }
@@ -25,4 +41,4 @@ let mapStateToProps = (state) => {
         moviesList: state.content.movies
     }
 }
-export default connect(mapStateToProps, { getContent })(Content);
+export default connect(mapStateToProps, { getContent, updateItem, removeItem, setEditedItem })(Content);

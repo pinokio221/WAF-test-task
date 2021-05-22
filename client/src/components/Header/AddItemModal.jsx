@@ -5,19 +5,11 @@ import styles from './Header.module.css'
 import Fade from '@material-ui/core/Fade';
 import Backdrop from '@material-ui/core/Backdrop';
 import { Field, reduxForm } from "redux-form"
-import TextField from '@material-ui/core/TextField'
-import { ThemeProvider } from "@material-ui/styles";
-import { createMuiTheme } from "@material-ui/core/styles";
 import Radio from '@material-ui/core/Radio'
-import RadioGroup from '@material-ui/core/RadioGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormControl from '@material-ui/core/FormControl'
-import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import DateFnsUtils from '@date-io/date-fns';
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button';
 import moment from 'moment'
+import { validate, asyncValidate } from '../../validators/validate'
+import { RenderTextField, RenderSelectField, RenderRadioButton, RenderDatePicker } from '../FormControls/Forms'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,95 +26,19 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const theme = createMuiTheme({
-    palette: {
-        type: "dark"
-    }
-});
 
-const RenderTextField = ({
-    label,
-    input,
-    meta: { touched, invalid, error },
-    ...custom
-  }) => (
-    <ThemeProvider theme={theme}>
-        <TextField 
-        variant="outlined" 
-        label={label} 
-        placeholder={label} 
-        error={touched && invalid} 
-        size="small" 
-        helperText={touched && error}
-        {...input}
-        {...custom}
-         />
-    </ThemeProvider>
-)
-
-
-const RenderSelectField = ({label, input, meta: { touched, invalid, error }, ...custom}) => {
-    return (
-        <div>
-            <ThemeProvider theme={theme}>
-            <FormControl error={touched && error}>
-            <InputLabel htmlFor="age-native-simple">Genre</InputLabel>
-            <Select
-            native
-            {...input}
-            {...custom}
-            inputProps={{
-                name: 'age',
-                id: 'age-native-simple'
-            }}
-            />
-            </FormControl>
-            </ThemeProvider>
-        </div>
-    )
-
-}
-
-const RenderRadioButton = ({ input, ...rest }) => (
-    <ThemeProvider theme={theme}>
-        <FormControl>
-            <RadioGroup {...input} {...rest}>
-                <FormControlLabel value="show" control={<Radio />} label="Show" />
-                <FormControlLabel value="movie" control={<Radio />} label="Movie" />
-            </RadioGroup>
-        </FormControl>
-    </ThemeProvider>
-  )
-
-const RenderDatePicker = ({ input: { onChange, value }, meta: {touched, invalid, error} }) => {
-    return (
-        <ThemeProvider theme={theme}>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <DatePicker
-            onChange={onChange}
-            error={touched && invalid}
-            helperText={touched && error}
-            value={value}
-            disableFuture
-            label='Release date'
-            views={["year"]}/>
-        </MuiPickersUtilsProvider>
-    </ThemeProvider>
-    )
-    
-}
 
 const AddItemForm = (props) => {
     const { handleSubmit, pristine, reset, submitting} = props
     return(
         <div>
-            <h3>Add new item</h3>
+            <center><h3 className={styles.modalTitle}>Add new item</h3></center>
             <form onSubmit={handleSubmit} className={styles.modalForm}>
                 <div className={styles.titleField}>
                     <Field name="title" component={RenderTextField} label="Show or Movie Title"/>
                 </div>
                 <div className={styles.typeField}>
-                    <Field name="type" component={RenderRadioButton}>
+                    <Field name="category" component={RenderRadioButton}>
                         <Radio value="show" label="show"/>
                         <Radio value="movie" label="movie"/>
                     </Field>
@@ -138,17 +54,15 @@ const AddItemForm = (props) => {
                     </Field>
                 </div>
                 <div>
-                    <Field name="rating" component={RenderTextField} label="Rating"/>
-                </div>
-                <div>
+                    <Field name="rating" className={styles.ratingField} component={RenderTextField} label="Rating" type="number"/>
                     <Field name="image" component={RenderTextField} label="Image Link"/>
                 </div>
                 <div>
                     <Field name="link" component={RenderTextField} label="Watch online Link"/>
                 </div>
                 <div className={styles.modalButtons}>
-                    <Button variant="contained" className={styles.modalBtn}>CANCEL</Button>
-                    <Button variant="contained" color="secondary" type='submit'>ADD ITEM</Button>
+                    <Button variant="contained" onClick={props.handleClose}>CANCEL</Button>
+                    <Button className={styles.modalBtn} variant="contained" disabled={pristine || submitting} color="secondary" type='submit'>ADD ITEM</Button>
                 </div>
             </form>
         </div>
@@ -156,7 +70,9 @@ const AddItemForm = (props) => {
 }
 
 const ReduxAddItemForm = reduxForm({
-    form: "newItem"
+    form: "newItem",
+    validate,
+    asyncValidate
 })(AddItemForm);
 
 const AddItemModal = (props) => {
@@ -175,6 +91,7 @@ const AddItemModal = (props) => {
         const formatYear = moment(formData.year).format('YYYY');
         formData.year = formatYear
         props.addItem(formData);
+        handleClose();
     }
     return(
         <div>
@@ -192,7 +109,7 @@ const AddItemModal = (props) => {
                 }}>
                 <Fade in={open}>
                     <div className={classes.paper}>
-                        <ReduxAddItemForm onSubmit={handleSubmit}/>
+                        <ReduxAddItemForm onSubmit={handleSubmit} handleClose={handleClose}/>
                     </div>
                 </Fade>
             </Modal>

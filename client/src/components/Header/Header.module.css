@@ -55,27 +55,36 @@
     background: rgb(255, 28, 11);
 }
 
+
+.modalTitle {
+    color: white;
+}
+
 .titleField {
-    margin-bottom: 10%;
+    margin-bottom: 2%;
 }
 
 .typeField {
     margin-left: 2%;
-    margin-bottom: 8%;
+    margin-bottom: 3%;
 }
 
 .genreField {
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+.ratingField {
+   margin-right: 10px;
+   margin-bottom: 10px;
 }
 .modalButtons {
     display: flex;
     justify-content: center;
-    margin-top: 10%;
+    margin-top: 3%;
 }
 
 .modalBtn {
-    margin-right: 10%;
+    margin-left: 10px;
 }
 
 
