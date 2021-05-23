@@ -13,7 +13,8 @@ const knex = require('knex')({
         ssl: { rejectUnauthorized: false }
     },
     migrations: {
-        tableName: 'knex_migrations'
+        tableName: 'knex_migrations',
+        directory: "./migrations"
         } 
 })
 
