@@ -22,7 +22,6 @@ export const validate = values => {
   }
 
 export const asyncValidate = async (values) => {
-  console.log(values)
   if(values.title && values.category) {
     const response = await api.titleValidation(values.title, values.category, values.id)
     if (response.status === 302) {
