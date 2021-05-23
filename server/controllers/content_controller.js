@@ -1,4 +1,5 @@
-const knex = require('../knexfile');
+'use strict'
+const knex = require('knex')(require('../knexfile'));
 
 const getShowsList = (req, res) => {
     try {
