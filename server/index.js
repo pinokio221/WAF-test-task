@@ -10,10 +10,15 @@ app.use(express.json());
 app.use('/api/content', contentRoute);
 app.use(express.static(path.join(__dirname, "build")));
 
+
 app.get('/', function(req, res) {
     res.status(200).json({
         message: "We have conenction"
     })
+})
+
+app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/public/index.html'));
 })
 
 app.listen(port, () => {
