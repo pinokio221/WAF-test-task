@@ -47,7 +47,6 @@ export const updateItem = (data) => {
     return(dispatch) => {
         api.updateItem(data).then((response) => {
             if(response.status === 200) {
-                console.log(response)
                 dispatch(updateItemAction(response.data));
             }
         })
@@ -119,7 +118,6 @@ const contentReducer = (state = initialState, action) => {
             }
         }
         case REMOVE_ITEM:
-            console.log(action)
             if(action.category == "show") {
                 state.shows.map(s => {
                     if(s.id === action.id) {

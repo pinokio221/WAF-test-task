@@ -32,16 +32,19 @@
     border-radius: 3px;
     margin-left: 70%;
     bottom: 10;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .btn {
     font-size: 18px;
+    margin-left: 3px;
     transition-duration: 0.3s;
     border: none;
     background: none;
     color: white;
-    padding: 5px;
+    padding: 10px;
     border-radius: 3px;
+    background-color: rgba(22, 21, 25, 0.2);
 }
 
 .add_btn:hover{

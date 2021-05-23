@@ -45,7 +45,6 @@ const getMoviesList = (req, res) => {
 const addItem = (req, res) => {
     try{
         const {title, category, year, genre, rating, image, link} = req.body.data
-        console.log(req.body)
         if(category === "show") {
             knex.insert({title, year, genre, rating, image, link}).into('shows').returning('*')
             .then(function(result) {
@@ -144,6 +143,9 @@ const titleValidation = (req, res) => {
         if(req.query.category === 'show') {
             knex.select('id').where('title', req.query.title).from("shows").first().then(function(row) {
                 if(row) {
+                    if(row.id == req.query.itemId) {
+                        return true;
+                    }
                     return res.status(302).json({
                         message: "Show with this title already exists!"
                     })
@@ -154,6 +156,9 @@ const titleValidation = (req, res) => {
         if(req.query.category === "movie") {
             knex.select('id').where('title', req.query.title).from("movies").first().then(function(row) {
                 if(row) {
+                    if(row.id == req.query.itemId) {
+                        return true;
+                    }
                     return res.status(302).json({
                         message: "Movie with this title already exists!"
                     })

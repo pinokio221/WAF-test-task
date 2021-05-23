@@ -36,7 +36,7 @@ const ItemOptionsMenu = (props) => {
                 onClick={handleClick}
                 color="secondary"
                 >
-                <MoreVertIcon className={styles.optionsBtn}/>
+                <MoreVertIcon/>
             </IconButton>
             <Menu
                 id="long-menu"

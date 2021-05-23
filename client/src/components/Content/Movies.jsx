@@ -87,7 +87,6 @@ const Movies = (props) => {
             data.year = formatYear.toString();
             data.category = "movie";
             data.id = itemId;
-            console.log(data)
             props.updateItem(data);
             
         }

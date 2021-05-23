@@ -21,9 +21,9 @@ export const api = {
             return error.response;
         }
     },
-    async titleValidation(title, category) {
+    async titleValidation(title, category, itemId) {
         try {
-            const response = await instance.get(`/validation?title=${title}&category=${category}`);
+            const response = await instance.get(`/validation?title=${title}&category=${category}&itemId=${itemId}`);
             return response;
             
         } catch (error) {
