@@ -39,6 +39,12 @@ let EditModeForm = (props) => {
                         <option value={'Action'}>Action</option>
                         <option value={'Drama'}>Drama</option>
                         <option value={'Horror'}>Horror</option>
+                        <option value={'Comedy'}>Comedy</option>
+                        <option value={'Fantasy'}>Fantasy</option>
+                        <option value={'Mystery'}>Mystery</option>
+                        <option value={'Thriller'}>Thriller</option>
+                        <option value={'Western'}>Western</option>
+                        <option value={'Adventures'}>Adventures</option>
                 </Field>
             </div>
             <div>

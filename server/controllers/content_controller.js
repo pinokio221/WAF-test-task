@@ -108,6 +108,7 @@ const removeItem = (req, res) => {
 const updateItem = (req, res) => {
     try{
         const {id, title, category, year, genre, rating, image, link} = req.body.data
+        console.log(req.body.data)
         if(category === "show") {
             knex('shows').update({title, year, genre, rating, image, link}).where('id', id).returning('*')
             .then(function(result) {
@@ -145,7 +146,7 @@ const titleValidation = (req, res) => {
             knex.select('id').where('title', req.query.title).from("shows").first().then(function(row) {
                 if(row) {
                     if(row.id == req.query.itemId) {
-                        return true;
+                        return res.status(200).send();
                     }
                     return res.status(302).json({
                         message: "Show with this title already exists!"
@@ -158,7 +159,7 @@ const titleValidation = (req, res) => {
             knex.select('id').where('title', req.query.title).from("movies").first().then(function(row) {
                 if(row) {
                     if(row.id == req.query.itemId) {
-                        return true;
+                        return res.status(200).send();
                     }
                     return res.status(302).json({
                         message: "Movie with this title already exists!"

@@ -26,6 +26,7 @@ const ItemOptionsMenu = (props) => {
             props.setItemId(data.id);
             props.setEditedItem(data);
         }
+        setAnchorEl(null);
     }
     return(
         <div className={styles.optionsMenu}>
