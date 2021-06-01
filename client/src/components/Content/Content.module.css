@@ -1,127 +1,122 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Sarala&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sarala&display=swap");
 
 .wrapper {
-    font-family: 'Sarala', sans-serif;
-    margin-top: 5%;
-    display: inline-block;
-    width: 85%;
+  font-family: "Sarala", sans-serif;
+  margin-top: 5%;
+  display: inline-block;
+  width: 85%;
 }
 
 .typeText {
-    font-size: 30px;
-    color: whitesmoke;
+  font-size: 30px;
+  color: whitesmoke;
 }
 
 .content_wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0px auto;
-    padding: 20px;
-    width: 85%;
-    border: 1px solid white;
-    background-color: rgb(187, 187, 201);
-    margin-bottom: 10%;
-    overflow-y: auto;
-    height: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0px auto;
+  padding: 20px;
+  width: 85%;
+  border: 1px solid white;
+  background-color: rgb(187, 187, 201);
+  margin-bottom: 10%;
+  overflow-y: auto;
+  height: 800px;
 }
-
 
 .contentCard {
-    display: flex;
-    cursor: pointer;
-    color: white;
-    margin-left: 30px;
-    margin-top: 15px;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background-color: rgb(21, 20, 22);
-    border-radius: 10px;
-    height: max-content;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  display: flex;
+  cursor: pointer;
+  color: white;
+  margin-left: 30px;
+  margin-top: 15px;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: rgb(21, 20, 22);
+  border-radius: 10px;
+  height: max-content;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
-
 
 .watchBlock {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.watchBlock >button:hover {
-    transition-duration: 0.5s;
-    background-color: darkgreen;
+.watchBlock > a:hover {
+  transition-duration: 0.5s;
+  background-color: darkgreen;
 }
-.watchBlock > button {
-    cursor: pointer;
-    font-size: 15px;
-    color: white;
-    padding: 10px;
-    background-color: rgb(14, 165, 9);
-    margin-top: 10%;
-    border: none;
-    transition-duration: 0.5s;
+.watchBlock > a {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 15px;
+  color: white;
+  padding: 10px;
+  background-color: rgb(14, 165, 9);
+  margin-top: 10%;
+  border: none;
+  transition-duration: 0.5s;
 }
 
 .editCard {
-    display: flex;
-    background-color: rgb(21, 20, 22);
-    flex-direction: column;
-    margin-left: 30px;
-    margin-top: 15px;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  display: flex;
+  background-color: rgb(21, 20, 22);
+  flex-direction: column;
+  margin-left: 30px;
+  margin-top: 15px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .editTitleField {
-    margin-bottom: 7%;
+  margin-bottom: 7%;
 }
 
 .editImageField {
-    margin-bottom: 7%;
+  margin-bottom: 7%;
 }
 
 .editLinkField {
-    margin-top: 7%;
+  margin-top: 7%;
+}
+
+.editYearField {
+    margin-right: 12%;
 }
 
 .editGenreField {
-    margin-top: 7%;
-    margin-bottom: 7%;
-    margin-right: 55%;
+  margin-top: 7%;
+  margin-bottom: 7%;
+  margin-right: 55%;
 }
 
 .cardHeader {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-
-
 .contentPhoto {
-    margin-bottom: 5%;
-    border: 3px solid rgb(255, 28, 11);
-    width: 200px;
-    height: 300px;
+  margin-bottom: 5%;
+  border: 3px solid rgb(255, 28, 11);
+  width: 200px;
+  height: 300px;
 }
 
 .editModeButtons {
-    display: flex;
-    flex-direction: row;
-    margin-top: 7%;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  margin-top: 7%;
+  justify-content: center;
 }
 
 .editModeButtons > .editBtn {
-    margin-left: 10%;
-
+  margin-left: 10%;
 }
-
-
-
-
